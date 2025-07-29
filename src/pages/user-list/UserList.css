@@ -1,0 +1,18 @@
+.user-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-list h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.user-list p {
+    color: #666;
+    margin: 0;
+} 

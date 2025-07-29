@@ -1,14 +1,8 @@
 import './App.css';
+import Layout from './components/layout/Layout';
 
 const App = () => {
-    return (
-        <div className="app">
-            <header className="app-header">
-                <h1>User Dashboard</h1>
-                <p>Welcome to the User Dashboard</p>
-            </header>
-        </div>
-    );
-}
+    return <Layout />;
+};
 
 export default App;
