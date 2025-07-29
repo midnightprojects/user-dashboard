@@ -1,8 +1,23 @@
+import React, { useState } from 'react';
 import { useUsers } from '../../hooks/useUsers';
+import { User } from '../../types/user';
+import Modal from '../../components/modal/Modal';
 import './UserList.css';
 
 const UserList = () => {
     const { users, loading, error } = useUsers();
+    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleRowClick = (user: User) => {
+        setSelectedUser(user);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedUser(null);
+    };
 
     return (
         <div className="user-list">
@@ -31,7 +46,11 @@ const UserList = () => {
                         </thead>
                         <tbody>
                             {users.map(user => (
-                                <tr key={user.id} className="user-row">
+                                <tr 
+                                    key={user.id} 
+                                    className="user-row"
+                                    onClick={() => handleRowClick(user)}
+                                >
                                     <td>{user.name}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
@@ -41,6 +60,13 @@ const UserList = () => {
                     </table>
                 </div>
             )}
+
+            {/* MODAL */}
+            <Modal 
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                user={selectedUser}
+            />
         </div>
     );
 };
