@@ -1,14 +1,24 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../../types/user';
 import { FormData } from '../../types/form';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { useUserStore } from '../../store/userStore';
-import BasicInfoSection from '../../components/form/BasicInfoSection';
-import AddressSection from '../../components/form/AddressSection';
-import CompanySection from '../../components/form/CompanySection';
 import FormActions from '../../components/form/FormActions';
 import './AddUser.css';
+
+// Lazy load form section components
+const BasicInfoSection = lazy(() => import('../../components/form/BasicInfoSection'));
+const AddressSection = lazy(() => import('../../components/form/AddressSection'));
+const CompanySection = lazy(() => import('../../components/form/CompanySection'));
+
+// Loading component for form sections
+const FormSectionLoader = () => (
+    <div className="form-section-loader" role="status" aria-live="polite">
+        <div className="loader-spinner"></div>
+        <p>Loading form section...</p>
+    </div>
+);
 
 const AddUser = () => {
     const navigate = useNavigate();
@@ -103,38 +113,44 @@ const AddUser = () => {
                     {isSubmitting ? 'Submitting form...' : 'Form ready'}
                 </div>
                 
-                <BasicInfoSection
-                    formData={{
-                        name: formData.name,
-                        username: formData.username,
-                        email: formData.email,
-                        phone: formData.phone,
-                        website: formData.website
-                    }}
-                    errors={errors}
-                    onChange={handleInputChange}
-                />
+                <Suspense fallback={<FormSectionLoader />}>
+                    <BasicInfoSection
+                        formData={{
+                            name: formData.name,
+                            username: formData.username,
+                            email: formData.email,
+                            phone: formData.phone,
+                            website: formData.website
+                        }}
+                        errors={errors}
+                        onChange={handleInputChange}
+                    />
+                </Suspense>
 
-                <AddressSection
-                    formData={{
-                        street: formData.street,
-                        suite: formData.suite,
-                        city: formData.city,
-                        zipcode: formData.zipcode
-                    }}
-                    errors={errors}
-                    onChange={handleInputChange}
-                />
+                <Suspense fallback={<FormSectionLoader />}>
+                    <AddressSection
+                        formData={{
+                            street: formData.street,
+                            suite: formData.suite,
+                            city: formData.city,
+                            zipcode: formData.zipcode
+                        }}
+                        errors={errors}
+                        onChange={handleInputChange}
+                    />
+                </Suspense>
 
-                <CompanySection
-                    formData={{
-                        companyName: formData.companyName,
-                        catchPhrase: formData.catchPhrase,
-                        bs: formData.bs
-                    }}
-                    errors={errors}
-                    onChange={handleInputChange}
-                />
+                <Suspense fallback={<FormSectionLoader />}>
+                    <CompanySection
+                        formData={{
+                            companyName: formData.companyName,
+                            catchPhrase: formData.catchPhrase,
+                            bs: formData.bs
+                        }}
+                        errors={errors}
+                        onChange={handleInputChange}
+                    />
+                </Suspense>
 
                 <FormActions
                     onCancel={handleCancel}

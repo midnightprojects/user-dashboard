@@ -1,13 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { useUserStore } from '../../store/userStore';
 import { useUsers } from '../../hooks/useUsers';
 import { useSearch } from '../../hooks/useSearch';
 import { useUserSort } from '../../hooks/useUserSort';
 import SearchInput from '../../components/search/SearchInput';
-import VirtualizedUserTable from '../../components/table/VirtualizedUserTable';
-import Modal from '../../components/modal/Modal';
 import { User } from '../../types/user';
 import './UserList.css';
+
+// Lazy load the table component
+const VirtualizedUserTable = lazy(() => import('../../components/table/VirtualizedUserTable'));
+
+// Lazy load the modal component since it's only used when needed
+const Modal = lazy(() => import('../../components/modal/Modal'));
+
+// Loading component for table
+const TableLoader = () => (
+    <div className="table-loader" role="status" aria-live="polite">
+        <div className="loader-spinner"></div>
+        <p>Loading table...</p>
+    </div>
+);
+
+// Loading component for modal
+const ModalLoader = () => (
+    <div className="modal-loader" role="status" aria-live="polite">
+        <div className="loader-spinner"></div>
+        <p>Loading modal...</p>
+    </div>
+);
 
 const UserList = () => {
     const { users: globalUsers, setUsers } = useUserStore();
@@ -72,19 +92,25 @@ const UserList = () => {
                 aria-live="polite"
                 aria-atomic="true"
             >
-                <VirtualizedUserTable
-                    users={sortedUsers}
-                    onRowClick={handleRowClick}
-                    onSort={handleSort}
-                    getSortIcon={getSortIcon}
-                />
+                <Suspense fallback={<TableLoader />}>
+                    <VirtualizedUserTable
+                        users={sortedUsers}
+                        onRowClick={handleRowClick}
+                        onSort={handleSort}
+                        getSortIcon={getSortIcon}
+                    />
+                </Suspense>
             </div>
 
-            <Modal
-                isOpen={!!selectedUser}
-                onClose={handleCloseModal}
-                user={selectedUser}
-            />
+            {selectedUser && (
+                <Suspense fallback={<ModalLoader />}>
+                    <Modal
+                        isOpen={!!selectedUser}
+                        onClose={handleCloseModal}
+                        user={selectedUser}
+                    />
+                </Suspense>
+            )}
         </div>
     );
 };

@@ -1,8 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import Header from '../header/Header';
-import UserList from '../../pages/user-list/UserList';
-import AddUser from '../../pages/add-user/AddUser';
 import './Layout.css';
+
+// Lazy load page components for code splitting
+const UserList = lazy(() => import('../../pages/user-list/UserList'));
+const AddUser = lazy(() => import('../../pages/add-user/AddUser'));
+
+// Loading component for Suspense fallback
+const PageLoader = () => (
+    <div className="page-loader" role="status" aria-live="polite">
+        <div className="loader-spinner"></div>
+        <p>Loading page...</p>
+    </div>
+);
 
 const Layout = () => {
     return (
@@ -15,10 +26,12 @@ const Layout = () => {
                     role="main"
                     aria-label="Main content"
                 >
-                    <Routes>
-                        <Route path="/" element={<UserList />} />
-                        <Route path="/add-user" element={<AddUser />} />
-                    </Routes>
+                    <Suspense fallback={<PageLoader />}>
+                        <Routes>
+                            <Route path="/" element={<UserList />} />
+                            <Route path="/add-user" element={<AddUser />} />
+                        </Routes>
+                    </Suspense>
                 </main>
             </div>
         </BrowserRouter>
