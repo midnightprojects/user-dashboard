@@ -20,21 +20,24 @@ const FormActions: React.FC<Props> = ({
 }) => {
     return (
         <div className="form-actions">
-            <button 
-                type="button" 
-                className="cancel-button"
-                onClick={onCancel}
-            >
-                {cancelText}
-            </button>
-            <button 
-                type="submit" 
-                className="submit-button"
-                disabled={isSubmitting || submitDisabled}
-                onClick={onSubmit}
-            >
-                {isSubmitting ? 'Submitting...' : submitText}
-            </button>
+            <p>Review the information above and ensure all required fields are completed. Click "Add User" to save the new user to the system, or cancel to return to the user list.</p>
+            <div className="form-actions-container">
+                <button 
+                    type="button" 
+                    className="cancel-button"
+                    onClick={onCancel}
+                >
+                    {cancelText}
+                </button>
+                <button 
+                    type="submit" 
+                    className="submit-button"
+                    disabled={isSubmitting || submitDisabled}
+                    onClick={onSubmit}
+                >
+                    {isSubmitting ? 'Submitting...' : submitText}
+                </button>
+            </div>
         </div>
     );
 };
