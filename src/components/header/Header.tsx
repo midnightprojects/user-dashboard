@@ -8,25 +8,29 @@ const Header = () => {
     const UserPlusIcon = FaUserPlus as React.FC<React.SVGProps<SVGSVGElement>>;
 
     return (
-        <nav className="navigation">
+        <header className="navigation" role="banner">
             <h1>Dashboard</h1>
-            <div className="segmented-control">
+            <nav className="segmented-control" role="navigation" aria-label="Main navigation">
                 <Link 
                     to="/" 
                     className={`segment ${location.pathname === '/' ? 'active' : ''}`}
+                    aria-current={location.pathname === '/' ? 'page' : undefined}
+                    aria-label="View user list"
                 >
-                    <ListIcon />
+                    <ListIcon aria-hidden="true" />
                     <span>User List</span>
                 </Link>
                 <Link 
                     to="/add-user" 
                     className={`segment ${location.pathname === '/add-user' ? 'active' : ''}`}
+                    aria-current={location.pathname === '/add-user' ? 'page' : undefined}
+                    aria-label="Add new user"
                 >
-                    <UserPlusIcon />
+                    <UserPlusIcon aria-hidden="true" />
                     <span>Add User</span>
                 </Link>
-            </div>
-        </nav>
+            </nav>
+        </header>
     );
 };
 

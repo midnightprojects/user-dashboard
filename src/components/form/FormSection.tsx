@@ -4,14 +4,17 @@ import './FormSection.css';
 interface Props {
     title: string;
     children: React.ReactNode;
+    id?: string;
 }
 
-const FormSection: React.FC<Props> = ({ title, children }) => {
+const FormSection: React.FC<Props> = ({ title, children, id }) => {
     return (
-        <div className="form-section">
+        <section className="form-section" id={id}>
             <h3>{title}</h3>
-            {children}
-        </div>
+            <div role="group" aria-labelledby={`${id}-title`}>
+                {children}
+            </div>
+        </section>
     );
 };
 

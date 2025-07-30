@@ -6,8 +6,8 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
@@ -29,13 +29,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    transform: scale(0.9);
     opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .modal-overlay.show .modal-content {
-    transform: scale(1);
     opacity: 1;
 }
 
@@ -77,6 +75,13 @@
     color: #333;
 }
 
+.modal-close:focus {
+    outline: 2px solid #61dafb;
+    outline-offset: 2px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
 .modal-body {
     padding: 1.5rem;
     overflow-y: auto;
@@ -103,13 +108,88 @@
     padding-bottom: 0.5rem;
 }
 
-.detail-section p {
-    margin: 0.25rem 0;
-    color: #666;
-    line-height: 1.5;
+.detail-section dl {
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
 }
 
-.detail-section strong {
-    color: #333;
+.detail-section dt {
     font-weight: 600;
+    color: #555;
+    margin: 0;
+}
+
+.detail-section dd {
+    margin: 0;
+    color: #333;
+}
+
+.detail-section a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.detail-section a:hover {
+    text-decoration: underline;
+    color: #004499;
+}
+
+.detail-section a:focus {
+    outline: 2px solid #61dafb;
+    outline-offset: 2px;
+    text-decoration: underline;
+    color: #004499;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-header,
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .user-details {
+        gap: 1rem;
+    }
+    
+    .detail-section {
+        padding: 1rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .modal-content {
+        border: 2px solid #000;
+    }
+    
+    .modal-header {
+        background: #000;
+        color: #fff;
+        border-bottom-color: #fff;
+    }
+    
+    .modal-close {
+        color: #fff;
+    }
+    
+    .modal-close:hover,
+    .modal-close:focus {
+        background-color: #fff;
+        color: #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .modal-overlay,
+    .modal-content {
+        transition: none;
+    }
 } 

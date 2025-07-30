@@ -9,7 +9,12 @@ const Layout = () => {
         <BrowserRouter>
             <div className="layout">
                 <Header />
-                <main className="main-content full-width">
+                <main 
+                    id="main-content" 
+                    className="main-content full-width"
+                    role="main"
+                    aria-label="Main content"
+                >
                     <Routes>
                         <Route path="/" element={<UserList />} />
                         <Route path="/add-user" element={<AddUser />} />

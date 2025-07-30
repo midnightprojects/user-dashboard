@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { User } from '../../types/user';
 import './Modal.css';
 
@@ -9,49 +9,115 @@ interface Props {
 }
 
 const Modal = ({ isOpen, onClose, user }: Props) => {
+    const modalRef = useRef<HTMLDivElement>(null);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        if (isOpen) {
+            // Focus the close button when modal opens
+            closeButtonRef.current?.focus();
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+            
+            // Handle escape key
+            const handleEscape = (e: KeyboardEvent) => {
+                if (e.key === 'Escape') {
+                    onClose();
+                }
+            };
+            
+            document.addEventListener('keydown', handleEscape);
+            
+            return () => {
+                document.removeEventListener('keydown', handleEscape);
+                document.body.style.overflow = 'unset';
+            };
+        }
+    }, [isOpen, onClose]);
+
+    const handleOverlayClick = (e: React.MouseEvent) => {
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+
     return (
         <div 
             className={`modal-overlay ${isOpen ? 'show' : ''}`} 
-            onClick={onClose}
+            onClick={handleOverlayClick}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+            aria-describedby="modal-content"
         >
-            {user && (
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                    <div className="modal-header">
-                        <h3>User Details</h3>
-                        <button className="modal-close" onClick={onClose}>
-                            ×
-                        </button>
-                    </div>
-                    
-                    <div className="modal-body">
+            <div 
+                className="modal-content" 
+                onClick={(e) => e.stopPropagation()}
+                ref={modalRef}
+                role="document"
+            >
+                <div className="modal-header">
+                    <h3 id="modal-title">User Details</h3>
+                    <button 
+                        className="modal-close" 
+                        onClick={onClose}
+                        ref={closeButtonRef}
+                        aria-label="Close modal"
+                        type="button"
+                    >
+                        ×
+                    </button>
+                </div>
+                
+                <div className="modal-body" id="modal-content">
+                    {user && (
                         <div className="user-details">
                             <div className="detail-section">
                                 <h4>Basic Information</h4>
-                                <p><strong>Name:</strong> {user.name}</p>
-                                <p><strong>Username:</strong> {user.username}</p>
-                                <p><strong>Email:</strong> {user.email}</p>
-                                <p><strong>Phone:</strong> {user.phone}</p>
-                                <p><strong>Website:</strong> {user.website}</p>
+                                <dl>
+                                    <dt>Name:</dt>
+                                    <dd>{user.name}</dd>
+                                    <dt>Username:</dt>
+                                    <dd>{user.username}</dd>
+                                    <dt>Email:</dt>
+                                    <dd><a href={`mailto:${user.email}`}>{user.email}</a></dd>
+                                    <dt>Phone:</dt>
+                                    <dd><a href={`tel:${user.phone}`}>{user.phone}</a></dd>
+                                    <dt>Website:</dt>
+                                    <dd><a href={user.website} target="_blank" rel="noopener noreferrer">{user.website}</a></dd>
+                                </dl>
                             </div>
                             
                             <div className="detail-section">
                                 <h4>Address</h4>
-                                <p><strong>Street:</strong> {user.address.street}</p>
-                                <p><strong>Suite:</strong> {user.address.suite}</p>
-                                <p><strong>City:</strong> {user.address.city}</p>
-                                <p><strong>Zipcode:</strong> {user.address.zipcode}</p>
+                                <dl>
+                                    <dt>Street:</dt>
+                                    <dd>{user.address.street}</dd>
+                                    <dt>Suite:</dt>
+                                    <dd>{user.address.suite}</dd>
+                                    <dt>City:</dt>
+                                    <dd>{user.address.city}</dd>
+                                    <dt>Zipcode:</dt>
+                                    <dd>{user.address.zipcode}</dd>
+                                </dl>
                             </div>
                             
                             <div className="detail-section">
                                 <h4>Company</h4>
-                                <p><strong>Name:</strong> {user.company.name}</p>
-                                <p><strong>Catch Phrase:</strong> {user.company.catchPhrase}</p>
-                                <p><strong>Business:</strong> {user.company.bs}</p>
+                                <dl>
+                                    <dt>Name:</dt>
+                                    <dd>{user.company.name}</dd>
+                                    <dt>Catch Phrase:</dt>
+                                    <dd>{user.company.catchPhrase}</dd>
+                                    <dt>Business:</dt>
+                                    <dd>{user.company.bs}</dd>
+                                </dl>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
-            )}
+            </div>
         </div>
     );
 };

@@ -1,5 +1,4 @@
 .table-container {
-    overflow-x: auto;
     margin-top: 1rem;
     overflow: hidden;
     border-radius: 8px;
@@ -31,6 +30,22 @@
     color: #333;
 }
 
+.sortable-header {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.sortable-header:hover {
+    background-color: #e9ecef;
+}
+
+.sortable-header:focus {
+    outline: 2px solid #61dafb;
+    outline-offset: -2px;
+    background-color: #e9ecef;
+}
+
 .user-row {
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -40,14 +55,10 @@
     background-color: #f8f9fa;
 }
 
-.sortable-header {
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.2s ease;
-}
-
-.sortable-header:hover {
-    background-color: #e9ecef;
+.user-row:focus {
+    outline: 2px solid #61dafb;
+    outline-offset: -2px;
+    background-color: #f8f9fa;
 }
 
 /* Responsive: Hide columns for tablet and mobile */

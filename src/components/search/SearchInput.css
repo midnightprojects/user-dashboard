@@ -21,11 +21,40 @@
     font-size: 1rem;
     outline: none;
     transition: border-color 0.2s ease;
+    background-color: #fff;
 }
 
 .search-input:focus {
     border-color: #61dafb;
     box-shadow: 0 0 0 2px rgba(97, 218, 251, 0.2);
+}
+
+.search-input::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .search-input {
+        border-width: 2px;
+    }
+    
+    .search-input:focus {
+        border-color: #000;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .search-icon {
+        color: #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .search-input {
+        transition: none;
+    }
 }
 
 @media (max-width: 480px) {

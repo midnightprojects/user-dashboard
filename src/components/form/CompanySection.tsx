@@ -12,7 +12,7 @@ interface Props {
 
 const CompanySection: React.FC<Props> = ({ formData, errors, onChange }) => {
     return (
-        <FormSection title="Company">
+        <FormSection title="Company" id="company">
             <div className="company-fields">
                 <FormField
                     label="Company Name"

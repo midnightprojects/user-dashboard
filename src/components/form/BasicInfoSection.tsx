@@ -12,7 +12,7 @@ interface Props {
 
 const BasicInfoSection: React.FC<Props> = ({ formData, errors, onChange }) => {
     return (
-        <FormSection title="Basic Information">
+        <FormSection title="Basic Information" id="basic-info">
             <FormRow>
                 <FormField
                     label="Full Name"

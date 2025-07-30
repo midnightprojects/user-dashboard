@@ -88,12 +88,21 @@ const AddUser = () => {
     };
 
     return (
-        <div className="add-user">
+        <div className="add-user" role="region" aria-label="Add new user page">
             <div className="header-container">
                 <h2>Add New User</h2>
             </div>
 
-            <form onSubmit={handleSubmit} className="user-form">
+            <form 
+                onSubmit={handleSubmit} 
+                className="user-form"
+                aria-label="Add new user form"
+                noValidate
+            >
+                <div role="status" aria-live="polite" className="sr-only">
+                    {isSubmitting ? 'Submitting form...' : 'Form ready'}
+                </div>
+                
                 <BasicInfoSection
                     formData={{
                         name: formData.name,

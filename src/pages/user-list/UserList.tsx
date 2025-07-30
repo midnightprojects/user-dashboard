@@ -38,25 +38,40 @@ const UserList = () => {
     };
 
     if (isLoading) {
-        return <div className="loading">Loading users...</div>;
+        return (
+            <div className="loading" role="status" aria-live="polite">
+                Loading users...
+            </div>
+        );
     }
 
     if (error) {
-        return <div className="error">Error: {error}</div>;
+        return (
+            <div className="error" role="alert" aria-live="assertive">
+                Error: {error}
+            </div>
+        );
     }
 
     return (
-        <div className="user-list">
+        <div className="user-list" role="region" aria-label="User list page">
             <div className="header-container">
                 <h2>User List</h2>
                 <SearchInput
                     value={searchTerm}
                     onChange={setSearchTerm}
                     placeholder="Search by name or email..."
+                    ariaLabel="Search users by name or email"
                 />
             </div>
 
-            <div className="user-table-container">
+            <div 
+                className="user-table-container" 
+                role="region" 
+                aria-label="Users table"
+                aria-live="polite"
+                aria-atomic="true"
+            >
                 <UserTable
                     users={sortedUsers}
                     onRowClick={handleRowClick}

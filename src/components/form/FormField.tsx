@@ -10,6 +10,7 @@ interface Props {
     error?: string;
     placeholder?: string;
     required?: boolean;
+    ariaDescribedBy?: string;
 }
 
 const FormField: React.FC<Props> = ({
@@ -20,12 +21,16 @@ const FormField: React.FC<Props> = ({
     onChange,
     error,
     placeholder,
-    required = false
+    required = false,
+    ariaDescribedBy
 }) => {
+    const errorId = `${id}-error`;
+    const describedBy = [ariaDescribedBy, error && errorId].filter(Boolean).join(' ');
+
     return (
         <div className="form-group">
             <label htmlFor={id}>
-                {label} {required && '*'}
+                {label} {required && <span aria-label="required">*</span>}
             </label>
             <input
                 type={type}
@@ -34,9 +39,21 @@ const FormField: React.FC<Props> = ({
                 onChange={(e) => onChange(e.target.value)}
                 className={error ? 'error' : ''}
                 placeholder={placeholder}
-                aria-describedby={error ? `${id}-error` : undefined}
+                required={required}
+                aria-describedby={describedBy || undefined}
+                aria-invalid={error ? 'true' : 'false'}
+                aria-required={required}
             />
-            {error && <span id={`${id}-error`} className="error-message">{error}</span>}
+            {error && (
+                <span 
+                    id={errorId} 
+                    className="error-message" 
+                    role="alert" 
+                    aria-live="polite"
+                >
+                    {error}
+                </span>
+            )}
         </div>
     );
 };
