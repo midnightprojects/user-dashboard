@@ -60,8 +60,25 @@ npm start
 
 - `npm start` - Runs the app in development mode
 - `npm test` - Launches the test runner
+- `npm test -- --coverage` - Runs tests with coverage report
 - `npm run build` - Builds the app for production
 - `npm run eject` - Ejects from Create React App (one-way operation)
+
+## Testing
+
+This project uses **Jest** and **React Testing Library** for comprehensive testing.
+
+### Test Coverage
+- **Form Components**: 100% coverage
+- **Utils & Hooks**: 100% coverage for tested files
+- **Overall**: 46.75% statements, 50.81% functions
+
+### Running Tests
+```bash
+npm test                    # Run all tests
+npm test -- --coverage     # Run with coverage report
+npm test -- --watch        # Run in watch mode
+```
 
 ## Project Structure
 
@@ -73,7 +90,8 @@ src/
 ├── store/         # Zustand stores
 ├── types/         # TypeScript type definitions
 ├── utils/         # Utility functions
-└── styles/        # CSS files
+├── styles/        # CSS files
+└── __tests__/     # Test files
 ```
 
 ## API
