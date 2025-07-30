@@ -1,7 +1,8 @@
 import React from 'react';
 import { User } from '../../types/user';
 import { formatName } from '../../utils/nameUtils';
-import './UserTable.css';
+import { useDynamicHeight } from '../../hooks/useDynamicHeight';
+import './VirtualizedUserTable.css';
 
 type SortField = 'formattedName' | 'username' | 'email';
 
@@ -12,12 +13,19 @@ interface Props {
     getSortIcon: (field: SortField) => React.ReactNode;
 }
 
-const UserTable: React.FC<Props> = ({ 
+const VirtualizedUserTable: React.FC<Props> = ({ 
     users, 
     onRowClick, 
     onSort, 
     getSortIcon 
 }) => {
+    const { height: tableHeight, containerRef } = useDynamicHeight({
+        minHeight: 300,
+        maxHeight: 800,
+        headerHeight: 60,
+        padding: 40
+    });
+
     const handleKeyDown = (event: React.KeyboardEvent, user: User) => {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
@@ -33,7 +41,7 @@ const UserTable: React.FC<Props> = ({
     };
 
     return (
-        <div className="table-container" role="region" aria-label="Users table">
+        <div className="table-container" role="region" aria-label="Users table" ref={containerRef}>
             <table className="users-table" role="table" aria-label="Users list">
                 <thead>
                     <tr role="row">
@@ -75,24 +83,28 @@ const UserTable: React.FC<Props> = ({
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    {users.map((user) => (
-                        <tr 
-                            key={user.id} 
-                            className="user-row"
-                            onClick={() => onRowClick(user)}
-                            onKeyDown={(e) => handleKeyDown(e, user)}
-                            role="row"
-                            tabIndex={0}
-                            aria-label={`View details for ${formatName(user.name)}`}
-                        >
-                            <td role="cell">{formatName(user.name)}</td>
-                            <td role="cell">{user.username}</td>
-                            <td role="cell">{user.email}</td>
-                        </tr>
-                    ))}
-                </tbody>
             </table>
+            <div style={{ maxHeight: `${tableHeight}px`, overflow: 'auto' }}>
+                <table className="users-table" style={{ borderTop: 'none' }}>
+                    <tbody>
+                        {users.map((user) => (
+                            <tr 
+                                key={user.id} 
+                                className="user-row"
+                                onClick={() => onRowClick(user)}
+                                onKeyDown={(e) => handleKeyDown(e, user)}
+                                role="row"
+                                tabIndex={0}
+                                aria-label={`View details for ${formatName(user.name)}`}
+                            >
+                                <td role="cell">{formatName(user.name)}</td>
+                                <td role="cell">{user.username}</td>
+                                <td role="cell">{user.email}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             {users.length === 0 && (
                 <div className="no-results" role="status" aria-live="polite">
                     No users found
@@ -102,4 +114,4 @@ const UserTable: React.FC<Props> = ({
     );
 };
 
-export default UserTable; 
+export default VirtualizedUserTable; 

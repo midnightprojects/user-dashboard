@@ -4,7 +4,7 @@ import { useUsers } from '../../hooks/useUsers';
 import { useSearch } from '../../hooks/useSearch';
 import { useUserSort } from '../../hooks/useUserSort';
 import SearchInput from '../../components/search/SearchInput';
-import UserTable from '../../components/table/UserTable';
+import VirtualizedUserTable from '../../components/table/VirtualizedUserTable';
 import Modal from '../../components/modal/Modal';
 import { User } from '../../types/user';
 import './UserList.css';
@@ -72,7 +72,7 @@ const UserList = () => {
                 aria-live="polite"
                 aria-atomic="true"
             >
-                <UserTable
+                <VirtualizedUserTable
                     users={sortedUsers}
                     onRowClick={handleRowClick}
                     onSort={handleSort}
@@ -89,4 +89,4 @@ const UserList = () => {
     );
 };
 
-export default UserList; 
+export default UserList;
