@@ -65,13 +65,11 @@ const UserList = () => {
                 />
             </div>
 
-            {selectedUser && (
-                <Modal
-                    isOpen={!!selectedUser}
-                    onClose={handleCloseModal}
-                    user={selectedUser}
-                />
-            )}
+            <Modal
+                isOpen={!!selectedUser}
+                onClose={handleCloseModal}
+                user={selectedUser}
+            />
         </div>
     );
 };

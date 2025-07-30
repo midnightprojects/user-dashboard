@@ -9,11 +9,9 @@ interface Props {
 }
 
 const Modal = ({ isOpen, onClose, user }: Props) => {
-    const shouldShow = isOpen && user;
-
     return (
         <div 
-            className={`modal-overlay ${shouldShow ? 'show' : ''}`} 
+            className={`modal-overlay ${isOpen ? 'show' : ''}`} 
             onClick={onClose}
         >
             {user && (
