@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaSearch } from 'react-icons/fa';
 import './SearchInput.css';
 
 interface Props {
@@ -8,8 +9,11 @@ interface Props {
 }
 
 const SearchInput = ({ value, onChange, placeholder = "Search..." }: Props) => {
+    const SearchIcon = FaSearch as React.FC<React.SVGProps<SVGSVGElement>>;
+    
     return (
         <div className="search-container">
+            <SearchIcon className="search-icon" />
             <input
                 type="text"
                 placeholder={placeholder}
