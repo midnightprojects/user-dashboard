@@ -15,8 +15,19 @@ A React TypeScript application for managing and displaying user information.
 
 - React 18 with TypeScript
 - React Router for navigation
+- Zustand for state management
 - Functional components with hooks
 - CSS for styling (no thirdparty UI libraries)
+
+## State Management
+
+This application uses **Zustand** for global state management instead of React Context API. 
+
+**Why Zustand over Context API:**
+- **Performance**: Only re-renders components that subscribe to specific state slices
+- **Simplicity**: No provider wrapping required, direct store access
+- **TypeScript**: Better type inference and less boilerplate
+- **DevTools**: Built-in Redux DevTools support for debugging
 
 ## Getting Started
 
@@ -59,6 +70,7 @@ src/
 ├── components/     # Reusable UI components
 ├── pages/         # Page components
 ├── hooks/         # Custom React hooks
+├── store/         # Zustand stores
 ├── types/         # TypeScript type definitions
 ├── utils/         # Utility functions
 └── styles/        # CSS files
@@ -67,11 +79,3 @@ src/
 ## API
 
 This application uses the [JSONPlaceholder API](https://jsonplaceholder.typicode.com/) for fetching user data.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request

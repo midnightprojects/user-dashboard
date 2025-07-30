@@ -1,13 +1,29 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
+    const location = useLocation();
+
     return (
         <nav className="navigation">
-            <h1>User Dashboard</h1>
+            <h1>Dashboard</h1>
             <ul className="nav-links">
-                <li><Link to="/">User List</Link></li>
-                <li><Link to="/add-user">Add User</Link></li>
+                <li>
+                    <Link 
+                        to="/" 
+                        className={location.pathname === '/' ? 'active' : ''}
+                    >
+                        User List
+                    </Link>
+                </li>
+                <li>
+                    <Link 
+                        to="/add-user" 
+                        className={location.pathname === '/add-user' ? 'active' : ''}
+                    >
+                        Add User
+                    </Link>
+                </li>
             </ul>
         </nav>
     );

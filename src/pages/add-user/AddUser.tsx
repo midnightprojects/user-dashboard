@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../../types/user';
 import { FormData } from '../../types/form';
 import { useFormValidation } from '../../hooks/useFormValidation';
+import { useUserStore } from '../../store/userStore';
 import BasicInfoSection from '../../components/form/BasicInfoSection';
 import AddressSection from '../../components/form/AddressSection';
 import CompanySection from '../../components/form/CompanySection';
@@ -11,6 +12,7 @@ import './AddUser.css';
 
 const AddUser = () => {
     const navigate = useNavigate();
+    const { addUser } = useUserStore();
     const { errors, validateForm, clearError } = useFormValidation();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState<FormData>({
@@ -72,8 +74,8 @@ const AddUser = () => {
             }
         };
 
-        // TODO: Add user to global state (we'll implement this next)
-        console.log('New user created:', newUser);
+        // Add user to global state
+        addUser(newUser);
 
         setIsSubmitting(false);
         
@@ -87,7 +89,7 @@ const AddUser = () => {
 
     return (
         <div className="add-user">
-            <div className="form-header">
+            <div className="header-container">
                 <h2>Add New User</h2>
             </div>
 
