@@ -2,13 +2,13 @@ import React from 'react';
 import { User } from '../../types/user';
 import './Modal.css';
 
-interface ModalProps {
+interface Props {
     isOpen: boolean;
     onClose: () => void;
     user: User | null;
 }
 
-const Modal = ({ isOpen, onClose, user }: ModalProps) => {
+const Modal = ({ isOpen, onClose, user }: Props) => {
     const shouldShow = isOpen && user;
 
     return (

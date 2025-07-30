@@ -1,0 +1,14 @@
+.form-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.form-section h3 {
+    color: #333;
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    padding-bottom: 0.5rem;
+} 

@@ -1,13 +1,13 @@
 import React from 'react';
 import './SearchInput.css';
 
-interface SearchInputProps {
+interface Props {
     value: string;
     onChange: (value: string) => void;
     placeholder?: string;
 }
 
-const SearchInput = ({ value, onChange, placeholder = "Search..." }: SearchInputProps) => {
+const SearchInput = ({ value, onChange, placeholder = "Search..." }: Props) => {
     return (
         <div className="search-container">
             <input
