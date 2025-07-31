@@ -217,7 +217,7 @@ describe('CompanySection', () => {
             expect(section).toBeInTheDocument();
             
             const companyFields = screen.getByText(/company name/i).closest('div')?.parentElement;
-            expect(companyFields).toHaveClass('company-fields');
+            expect(companyFields).toHaveClass('companyFields');
         });
     });
 

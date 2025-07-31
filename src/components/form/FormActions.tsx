@@ -1,5 +1,5 @@
 import React from 'react';
-import './FormActions.css';
+import styles from './FormActions.module.css';
 
 interface Props {
     onCancel: () => void;
@@ -19,14 +19,14 @@ const FormActions: React.FC<Props> = ({
     submitDisabled = false
 }) => {
     return (
-        <div className="form-actions" role="group" aria-label="Form actions">
+        <div className={styles.formActions} role="group" aria-label="Form actions">
             <p id="form-instructions">
                 Review the information above and ensure all required fields are completed. Click "Add User" to save the new user to the system, or cancel to return to the user list.
             </p>
-            <div className="form-actions-container">
+            <div className={styles.formActionsContainer}>
                 <button 
                     type="button" 
-                    className="cancel-button"
+                    className={styles.cancelButton}
                     onClick={onCancel}
                     aria-describedby="form-instructions"
                 >
@@ -34,7 +34,7 @@ const FormActions: React.FC<Props> = ({
                 </button>
                 <button 
                     type="submit" 
-                    className="submit-button"
+                    className={styles.submitButton}
                     disabled={isSubmitting || submitDisabled}
                     onClick={onSubmit}
                     aria-describedby="form-instructions"

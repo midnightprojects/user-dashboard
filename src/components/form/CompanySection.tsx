@@ -2,7 +2,7 @@ import React from 'react';
 import FormSection from './FormSection';
 import FormField from './FormField';
 import { CompanyFormData } from '../../types/form';
-import './CompanySection.css';
+import styles from './CompanySection.module.css';
 
 interface Props {
     formData: CompanyFormData;
@@ -13,7 +13,7 @@ interface Props {
 const CompanySection: React.FC<Props> = ({ formData, errors, onChange }) => {
     return (
         <FormSection title="Company" id="company">
-            <div className="company-fields">
+            <div className={styles.companyFields}>
                 <FormField
                     label="Company Name"
                     id="companyName"

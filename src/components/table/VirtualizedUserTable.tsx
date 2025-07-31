@@ -2,7 +2,7 @@ import React from 'react';
 import { User } from '../../types/user';
 import { formatName } from '../../utils/nameUtils';
 import { useDynamicHeight } from '../../hooks/useDynamicHeight';
-import './VirtualizedUserTable.css';
+import styles from './VirtualizedUserTable.module.css';
 
 type SortField = 'formattedName' | 'username' | 'email';
 
@@ -41,12 +41,12 @@ const VirtualizedUserTable: React.FC<Props> = ({
     };
 
     return (
-        <div className="table-container" role="region" aria-label="Users table" ref={containerRef}>
-            <table className="users-table" role="table" aria-label="Users list">
+        <div className={styles.tableContainer} role="region" aria-label="Users table" ref={containerRef}>
+            <table className={styles.usersTable} role="table" aria-label="Users list">
                 <thead>
                     <tr role="row">
                         <th 
-                            className="sortable-header"
+                            className={styles.sortableHeader}
                             onClick={() => onSort('formattedName')}
                             onKeyDown={(e) => handleHeaderKeyDown(e, 'formattedName')}
                             role="columnheader"
@@ -58,7 +58,7 @@ const VirtualizedUserTable: React.FC<Props> = ({
                             Name {getSortIcon('formattedName')}
                         </th>
                         <th 
-                            className="sortable-header"
+                            className={styles.sortableHeader}
                             onClick={() => onSort('username')}
                             onKeyDown={(e) => handleHeaderKeyDown(e, 'username')}
                             role="columnheader"
@@ -70,7 +70,7 @@ const VirtualizedUserTable: React.FC<Props> = ({
                             Username {getSortIcon('username')}
                         </th>
                         <th 
-                            className="sortable-header"
+                            className={styles.sortableHeader}
                             onClick={() => onSort('email')}
                             onKeyDown={(e) => handleHeaderKeyDown(e, 'email')}
                             role="columnheader"
@@ -85,12 +85,12 @@ const VirtualizedUserTable: React.FC<Props> = ({
                 </thead>
             </table>
             <div style={{ maxHeight: `${tableHeight}px`, overflow: 'auto' }}>
-                <table className="users-table" style={{ borderTop: 'none' }}>
+                <table className={styles.usersTable} style={{ borderTop: 'none' }}>
                     <tbody>
                         {users.map((user) => (
                             <tr 
                                 key={user.id} 
-                                className="user-row"
+                                className={styles.userRow}
                                 onClick={() => onRowClick(user)}
                                 onKeyDown={(e) => handleKeyDown(e, user)}
                                 role="row"
@@ -106,7 +106,7 @@ const VirtualizedUserTable: React.FC<Props> = ({
                 </table>
             </div>
             {users.length === 0 && (
-                <div className="no-results" role="status" aria-live="polite">
+                <div className={styles.noResults} role="status" aria-live="polite">
                     No users found
                 </div>
             )}

@@ -250,16 +250,16 @@ describe('FormActions', () => {
             const cancelButton = screen.getByText('Cancel');
             const submitButton = screen.getByText('Add User');
             
-            expect(actionsGroup).toHaveClass('form-actions');
-            expect(cancelButton).toHaveClass('cancel-button');
-            expect(submitButton).toHaveClass('submit-button');
+            expect(actionsGroup).toHaveClass('formActions');
+            expect(cancelButton).toHaveClass('cancelButton');
+            expect(submitButton).toHaveClass('submitButton');
         });
 
         it('maintains classes when disabled', () => {
             render(<FormActions {...defaultProps} submitDisabled />);
             
             const submitButton = screen.getByText('Add User');
-            expect(submitButton).toHaveClass('submit-button');
+            expect(submitButton).toHaveClass('submitButton');
         });
     });
 }); 

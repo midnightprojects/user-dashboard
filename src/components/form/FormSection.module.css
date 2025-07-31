@@ -1,4 +1,4 @@
-.form-section {
+.formSection {
     padding: 1.5rem;
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -6,7 +6,7 @@
     min-width: 0;
 }
 
-.form-section h3 {
+.sectionTitle {
     color: #333;
     margin: 0 0 1rem 0;
     font-size: 1.1rem;

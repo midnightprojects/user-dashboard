@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import './SearchInput.css';
+import styles from './SearchInput.module.css';
 
 interface Props {
     value: string;
@@ -33,18 +33,18 @@ const SearchInput = ({
     const displayPlaceholder = isMobile ? mobilePlaceholder : placeholder;
 
     return (
-        <div className="search-container" role="search">
-            <SearchIcon className="search-icon" aria-hidden="true" />
+        <div className={styles.searchContainer} role="search">
+            <SearchIcon className={styles.searchIcon} aria-hidden="true" />
             <input
                 type="text"
                 placeholder={displayPlaceholder}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="search-input"
+                className={styles.searchInput}
                 aria-label={ariaLabel}
                 aria-describedby="search-description"
             />
-            <div id="search-description" className="sr-only">
+            <div id="search-description" className={styles.srOnly}>
                 Search through users by name or email address
             </div>
         </div>

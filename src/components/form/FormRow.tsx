@@ -1,5 +1,5 @@
 import React from 'react';
-import './FormRow.css';
+import styles from './FormRow.module.css';
 
 interface Props {
     children: React.ReactNode;
@@ -7,7 +7,7 @@ interface Props {
 
 const FormRow: React.FC<Props> = ({ children }) => {
     return (
-        <div className="form-row">
+        <div className={styles.formRow}>
             {children}
         </div>
     );

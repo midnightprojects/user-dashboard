@@ -1,4 +1,4 @@
-.add-user .header-container {
+.headerContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,12 +7,12 @@
     margin-bottom: 1rem;
 }
 
-.add-user .header-container h2 {
+.headerTitle {
     color: #333;
     margin: 0;
 }
 
-.user-form {
+.userForm {
     padding: 0 1.5rem 1.5rem 1.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -20,7 +20,7 @@
     align-items: stretch;
 }
 
-.user-form .form-actions {
+.actionsContainer {
     grid-column: 2;
     grid-row: 2;
     display: flex;
@@ -34,8 +34,7 @@
     min-width: 0;
 }
 
-/* Form Section Loader Styles */
-.form-section-loader {
+.formSectionLoader {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +47,7 @@
     background-color: #f9f9f9;
 }
 
-.form-section-loader .loader-spinner {
+.loaderSpinner {
     width: 25px;
     height: 25px;
     border: 2px solid #f3f3f3;
@@ -58,7 +57,7 @@
     margin-bottom: 0.5rem;
 }
 
-.form-section-loader p {
+.formSectionLoaderText {
     color: #666;
     font-size: 0.8rem;
     margin: 0;
@@ -70,17 +69,15 @@
 }
 
 @media (max-width: 980px) {
-    .add-user .header-container {
+    .headerContainer {
         justify-content: flex-start;
         padding: 1rem 1.5rem 0 1.5rem;
     }
-    
-    .user-form {
+    .userForm {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
-    .user-form .form-actions {
+    .actionsContainer {
         grid-column: 1;
         grid-row: auto;
         align-items: stretch;

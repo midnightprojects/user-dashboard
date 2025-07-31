@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { User } from '../../types/user';
-import './Modal.css';
+import styles from './Modal.module.css';
 
 interface Props {
     isOpen: boolean;
@@ -44,7 +44,7 @@ const Modal = ({ isOpen, onClose, user }: Props) => {
 
     return (
         <div 
-            className={`modal-overlay ${isOpen ? 'show' : ''}`} 
+            className={`${styles.modalOverlay} ${isOpen ? styles.show : ''}`} 
             onClick={handleOverlayClick}
             role="dialog"
             aria-modal="true"
@@ -52,15 +52,15 @@ const Modal = ({ isOpen, onClose, user }: Props) => {
             aria-describedby="modal-content"
         >
             <div 
-                className="modal-content" 
+                className={styles.modalContent} 
                 onClick={(e) => e.stopPropagation()}
                 ref={modalRef}
                 role="document"
             >
-                <div className="modal-header">
+                <div className={styles.modalHeader}>
                     <h3 id="modal-title">User Details</h3>
                     <button 
-                        className="modal-close" 
+                        className={styles.modalClose} 
                         onClick={onClose}
                         ref={closeButtonRef}
                         aria-label="Close modal"
@@ -70,10 +70,10 @@ const Modal = ({ isOpen, onClose, user }: Props) => {
                     </button>
                 </div>
                 
-                <div className="modal-body" id="modal-content">
+                <div className={styles.modalBody} id="modal-content">
                     {user && (
-                        <div className="user-details">
-                            <div className="detail-section">
+                        <div className={styles.userDetails}>
+                            <div className={styles.detailSection}>
                                 <h4>Basic Information</h4>
                                 <dl>
                                     <dt>Name:</dt>
@@ -89,7 +89,7 @@ const Modal = ({ isOpen, onClose, user }: Props) => {
                                 </dl>
                             </div>
                             
-                            <div className="detail-section">
+                            <div className={styles.detailSection}>
                                 <h4>Address</h4>
                                 <dl>
                                     <dt>Street:</dt>
@@ -103,7 +103,7 @@ const Modal = ({ isOpen, onClose, user }: Props) => {
                                 </dl>
                             </div>
                             
-                            <div className="detail-section">
+                            <div className={styles.detailSection}>
                                 <h4>Company</h4>
                                 <dl>
                                     <dt>Name:</dt>

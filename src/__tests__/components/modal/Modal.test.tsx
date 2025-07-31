@@ -333,8 +333,8 @@ describe('Modal', () => {
             const overlay = screen.getByRole('dialog');
             const content = screen.getByRole('document');
             
-            expect(overlay).toHaveClass('modal-overlay', 'show');
-            expect(content).toHaveClass('modal-content');
+            expect(overlay).toHaveClass('modalOverlay', 'show');
+            expect(content).toHaveClass('modalContent');
         });
 
         it('applies show class when modal is open', () => {

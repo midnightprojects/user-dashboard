@@ -1,4 +1,4 @@
-.modal-overlay {
+.modalOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,12 +14,12 @@
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.modal-overlay.show {
+.modalOverlay.show {
     opacity: 1;
     visibility: visible;
 }
 
-.modal-content {
+.modalContent {
     background: white;
     border-radius: 8px;
     max-width: 500px;
@@ -33,11 +33,11 @@
     transition: opacity 0.3s ease;
 }
 
-.modal-overlay.show .modal-content {
+.modalOverlay.show .modalContent {
     opacity: 1;
 }
 
-.modal-header {
+.modalHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,12 +49,12 @@
     z-index: 1;
 }
 
-.modal-header h3 {
+.modalHeader h3 {
     margin: 0;
     color: #333;
 }
 
-.modal-close {
+.modalClose {
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -70,30 +70,30 @@
     transition: background-color 0.2s ease;
 }
 
-.modal-close:hover {
+.modalClose:hover {
     background-color: #f8f9fa;
     color: #333;
 }
 
-.modal-close:focus {
+.modalClose:focus {
     outline: 2px solid #61dafb;
     outline-offset: 2px;
     background-color: #f8f9fa;
     color: #333;
 }
 
-.modal-body {
+.modalBody {
     padding: 1.5rem;
     overflow-y: auto;
     flex: 1;
 }
 
-.user-details {
+.userDetails {
     display: grid;
     gap: 1.5rem;
 }
 
-.detail-section {
+.detailSection {
     padding: 1.5rem;
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -101,41 +101,41 @@
     min-width: 0;
 }
 
-.detail-section h4 {
+.detailSection h4 {
     color: #333;
     margin: 0 0 1rem 0;
     font-size: 1.1rem;
     padding-bottom: 0.5rem;
 }
 
-.detail-section dl {
+.detailSection dl {
     margin: 0;
     display: grid;
     gap: 0.5rem;
 }
 
-.detail-section dt {
+.detailSection dt {
     font-weight: 600;
     color: #555;
     margin: 0;
 }
 
-.detail-section dd {
+.detailSection dd {
     margin: 0;
     color: #333;
 }
 
-.detail-section a {
+.detailSection a {
     color: #0066cc;
     text-decoration: none;
 }
 
-.detail-section a:hover {
+.detailSection a:hover {
     text-decoration: underline;
     color: #004499;
 }
 
-.detail-section a:focus {
+.detailSection a:focus {
     outline: 2px solid #61dafb;
     outline-offset: 2px;
     text-decoration: underline;
@@ -144,43 +144,43 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .modal-content {
+    .modalContent {
         width: 95%;
         max-height: 95vh;
     }
     
-    .modal-header,
-    .modal-body {
+    .modalHeader,
+    .modalBody {
         padding: 1rem;
     }
     
-    .user-details {
+    .userDetails {
         gap: 1rem;
     }
     
-    .detail-section {
+    .detailSection {
         padding: 1rem;
     }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-    .modal-content {
+    .modalContent {
         border: 2px solid #000;
     }
     
-    .modal-header {
+    .modalHeader {
         background: #000;
         color: #fff;
         border-bottom-color: #fff;
     }
     
-    .modal-close {
+    .modalClose {
         color: #fff;
     }
     
-    .modal-close:hover,
-    .modal-close:focus {
+    .modalClose:hover,
+    .modalClose:focus {
         background-color: #fff;
         color: #000;
     }
@@ -188,8 +188,8 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-    .modal-overlay,
-    .modal-content {
+    .modalOverlay,
+    .modalContent {
         transition: none;
     }
 } 

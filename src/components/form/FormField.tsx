@@ -1,5 +1,5 @@
 import React from 'react';
-import './FormField.css';
+import styles from './FormField.module.css';
 
 interface Props {
     label: string;
@@ -28,8 +28,8 @@ const FormField: React.FC<Props> = ({
     const describedBy = [ariaDescribedBy, error && errorId].filter(Boolean).join(' ');
 
     return (
-        <div className="form-group">
-            <label htmlFor={id}>
+        <div className={styles.formGroup}>
+            <label htmlFor={id} className={styles.label}>
                 {label} {required && <span aria-label="required">*</span>}
             </label>
             <input
@@ -37,7 +37,7 @@ const FormField: React.FC<Props> = ({
                 id={id}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className={error ? 'error' : ''}
+                className={error ? `${styles.input} ${styles.error}` : styles.input}
                 placeholder={placeholder}
                 required={required}
                 aria-describedby={describedBy || undefined}
@@ -47,7 +47,7 @@ const FormField: React.FC<Props> = ({
             {error && (
                 <span 
                     id={errorId} 
-                    className="error-message" 
+                    className={styles.errorMessage} 
                     role="alert" 
                     aria-live="polite"
                 >

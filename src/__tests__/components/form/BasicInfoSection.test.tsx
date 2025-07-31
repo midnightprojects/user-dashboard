@@ -241,7 +241,7 @@ describe('BasicInfoSection', () => {
             render(<BasicInfoSection {...defaultProps} />);
             
             // Check that form rows are present (this would depend on the actual DOM structure)
-            const formRows = document.querySelectorAll('.form-row');
+            const formRows = document.querySelectorAll('.formRow');
             expect(formRows.length).toBeGreaterThan(0);
         });
 

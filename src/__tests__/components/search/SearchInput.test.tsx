@@ -99,7 +99,7 @@ describe('SearchInput', () => {
             
             const description = screen.getByText('Search through users by name or email address');
             expect(description).toHaveAttribute('id', 'search-description');
-            expect(description).toHaveClass('sr-only');
+            expect(description).toHaveClass('srOnly');
         });
 
         it('has search icon', () => {
@@ -191,8 +191,8 @@ describe('SearchInput', () => {
             const container = screen.getByRole('search');
             const input = screen.getByRole('textbox');
             
-            expect(container).toHaveClass('search-container');
-            expect(input).toHaveClass('search-input');
+            expect(container).toHaveClass('searchContainer');
+            expect(input).toHaveClass('searchInput');
         });
     });
 

@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { FaList, FaUserPlus } from 'react-icons/fa';
 import { usePreload } from '../../hooks/usePreload';
-import './Header.css';
+import styles from './Header.module.css';
 
 // Import functions for preloading
 const preloadUserList = () => import('../../pages/user-list/UserList');
@@ -17,12 +17,12 @@ const Header = () => {
     const preloadAddUserPage = usePreload(preloadAddUser);
 
     return (
-        <header className="navigation" role="banner">
+        <header className={styles.navigation} role="banner">
             <h1>Dashboard</h1>
-            <nav className="segmented-control" role="navigation" aria-label="Main navigation">
+            <nav className={styles.segmentedControl} role="navigation" aria-label="Main navigation">
                 <Link 
                     to="/" 
-                    className={`segment ${location.pathname === '/' ? 'active' : ''}`}
+                    className={`${styles.segment} ${location.pathname === '/' ? styles.active : ''}`}
                     aria-current={location.pathname === '/' ? 'page' : undefined}
                     aria-label="View user list"
                     onMouseEnter={preloadUserListPage}
@@ -33,7 +33,7 @@ const Header = () => {
                 </Link>
                 <Link 
                     to="/add-user" 
-                    className={`segment ${location.pathname === '/add-user' ? 'active' : ''}`}
+                    className={`${styles.segment} ${location.pathname === '/add-user' ? styles.active : ''}`}
                     aria-current={location.pathname === '/add-user' ? 'page' : undefined}
                     aria-label="Add new user"
                     onMouseEnter={preloadAddUserPage}
