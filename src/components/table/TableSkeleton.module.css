@@ -47,8 +47,8 @@
 
 /* Responsive: Hide columns for tablet and mobile */
 @media (max-width: 767px) {
-    .skeletonHeaderCell:nth-child(3),
-    .skeletonCell:nth-child(3) {
+    .skeletonHeaderCell:nth-child(2),
+    .skeletonCell:nth-child(2) {
         display: none;
     }
 }

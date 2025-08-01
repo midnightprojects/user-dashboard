@@ -84,13 +84,12 @@ npm test -- --watch        # Run in watch mode
 
 ```
 src/
-├── components/     # Reusable UI components
-├── pages/         # Page components
+├── components/    # Reusable UI components (with co-located CSS Modules)
+├── pages/         # Page components (with co-located CSS Modules)
 ├── hooks/         # Custom React hooks
 ├── store/         # Zustand stores
 ├── types/         # TypeScript type definitions
 ├── utils/         # Utility functions
-├── styles/        # CSS files
 └── __tests__/     # Test files
 ```
 

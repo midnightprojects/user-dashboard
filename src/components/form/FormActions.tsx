@@ -21,7 +21,7 @@ const FormActions: React.FC<Props> = ({
     return (
         <div className={styles.formActions} role="group" aria-label="Form actions">
             <p id="form-instructions">
-                Review the information above and ensure all required fields are completed. Click "Add User" to save the new user to the system, or cancel to return to the user list.
+                Review the information and ensure all required fields are completed. Click "Add User" to save the new user to the system, or cancel to return to the user list.
             </p>
             <div className={styles.formActionsContainer}>
                 <button 

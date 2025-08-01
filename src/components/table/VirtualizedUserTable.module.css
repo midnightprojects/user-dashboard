@@ -63,8 +63,8 @@
 
 /* Responsive: Hide columns for tablet and mobile */
 @media (max-width: 767px) {
-  .usersTable th:nth-child(3),
-  .usersTable td:nth-child(3) {
+  .usersTable th:nth-child(2),
+  .usersTable td:nth-child(2) {
     display: none;
   }
 }

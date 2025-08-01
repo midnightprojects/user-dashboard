@@ -30,7 +30,7 @@ describe('FormActions', () => {
         it('renders form instructions', () => {
             render(<FormActions {...defaultProps} />);
             
-            expect(screen.getByText(/review the information above/i)).toBeInTheDocument();
+            expect(screen.getByText(/review the information and ensure all required fields are completed/i)).toBeInTheDocument();
         });
 
         it('renders submit button as submit type', () => {
@@ -160,14 +160,14 @@ describe('FormActions', () => {
         it('has proper form instructions with id', () => {
             render(<FormActions {...defaultProps} />);
             
-            const instructions = screen.getByText(/review the information above/i);
+            const instructions = screen.getByText(/review the information and ensure all required fields are completed/i);
             expect(instructions).toHaveAttribute('id', 'form-instructions');
         });
 
         it('provides clear instructions for screen readers', () => {
             render(<FormActions {...defaultProps} />);
             
-            const instructions = screen.getByText(/review the information above/i);
+            const instructions = screen.getByText(/review the information and ensure all required fields are completed/i);
             expect(instructions).toHaveTextContent(/ensure all required fields are completed/i);
             expect(instructions).toHaveTextContent(/click "Add User" to save/i);
             expect(instructions).toHaveTextContent(/cancel to return to the user list/i);
