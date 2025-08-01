@@ -3,7 +3,7 @@ import { useUserStore } from '../../store/userStore';
 import { useUsers } from '../../hooks/useUsers';
 import { useSearch } from '../../hooks/useSearch';
 import { useUserSort } from '../../hooks/useUserSort';
-import SearchInput from '../../components/search/SearchInput';
+import PageHeader from '../../components/layout/PageHeader';
 import TableSkeleton from '../../components/table/TableSkeleton';
 import { User } from '../../types/user';
 import styles from './UserList.module.css';
@@ -53,15 +53,13 @@ const UserList = () => {
     if (isLoading) {
         return (
             <div className={`${styles.userList} ${styles.pageFadeIn}`} role="region" aria-label="User list page">
-                <div className={styles.headerContainer}>
-                    <h2 className={styles.headerTitle}>User List</h2>
-                    <SearchInput
-                        value={searchTerm}
-                        onChange={setSearchTerm}
-                        placeholder="Search by name or email..."
-                        ariaLabel="Search users by name or email"
-                    />
-                </div>
+                <PageHeader 
+                    title="User List"
+                    searchValue={searchTerm}
+                    onSearchChange={setSearchTerm}
+                    searchPlaceholder="Search by name or email..."
+                    searchAriaLabel="Search users by name or email"
+                />
                 <div className={styles.userTableContainer}>
                     <TableSkeleton />
                 </div>
@@ -77,15 +75,13 @@ const UserList = () => {
     }
     return (
         <div className={`${styles.userList} ${styles.pageFadeIn}`} role="region" aria-label="User list page">
-            <div className={styles.headerContainer}>
-                <h2 className={styles.headerTitle}>User List</h2>
-                <SearchInput
-                    value={searchTerm}
-                    onChange={setSearchTerm}
-                    placeholder="Search by name or email..."
-                    ariaLabel="Search users by name or email"
-                />
-            </div>
+            <PageHeader 
+                title="User List"
+                searchValue={searchTerm}
+                onSearchChange={setSearchTerm}
+                searchPlaceholder="Search by name or email..."
+                searchAriaLabel="Search users by name or email"
+            />
             <div 
                 className={styles.userTableContainer}
                 role="region" 

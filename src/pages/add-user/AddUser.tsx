@@ -5,6 +5,7 @@ import { FormData } from '../../types/form';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { useUserStore } from '../../store/userStore';
 import FormActions from '../../components/form/FormActions';
+import PageHeader from '../../components/layout/PageHeader';
 import styles from './AddUser.module.css';
 
 // Lazy load form section components
@@ -91,9 +92,7 @@ const AddUser = () => {
 
     return (
         <div className={`${styles.addUser} ${styles.pageFadeIn}`} role="region" aria-label="Add new user page">
-            <div className={styles.headerContainer}>
-                <h2 className={styles.headerTitle}>Add New User</h2>
-            </div>
+            <PageHeader title="Add New User" />
             <form 
                 onSubmit={handleSubmit} 
                 className={styles.userForm}
