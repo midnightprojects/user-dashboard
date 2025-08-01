@@ -90,7 +90,7 @@ const AddUser = () => {
     };
 
     return (
-        <div className={styles.addUser} role="region" aria-label="Add new user page">
+        <div className={`${styles.addUser} ${styles.pageFadeIn}`} role="region" aria-label="Add new user page">
             <div className={styles.headerContainer}>
                 <h2 className={styles.headerTitle}>Add New User</h2>
             </div>

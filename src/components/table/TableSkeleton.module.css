@@ -1,0 +1,63 @@
+.skeletonContainer {
+    margin-top: 1rem;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skeletonHeader {
+    display: flex;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.skeletonHeaderCell {
+    flex: 1;
+    padding: 1rem;
+    height: 20px;
+    background: #e9ecef;
+    border-radius: 4px;
+    margin: 0.5rem;
+}
+
+.skeletonBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.skeletonRow {
+    display: flex;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.skeletonRow:last-child {
+    border-bottom: none;
+}
+
+.skeletonCell {
+    flex: 1;
+    padding: 1rem;
+    height: 16px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    margin: 0.5rem;
+}
+
+/* Responsive: Hide columns for tablet and mobile */
+@media (max-width: 767px) {
+    .skeletonHeaderCell:nth-child(3),
+    .skeletonCell:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .skeletonHeaderCell:nth-child(2),
+    .skeletonCell:nth-child(2),
+    .skeletonHeaderCell:nth-child(3),
+    .skeletonCell:nth-child(3) {
+        display: none;
+    }
+} 
